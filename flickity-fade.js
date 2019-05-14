@@ -51,7 +51,14 @@ Slide.prototype.updateTarget = function() {
 
 Slide.prototype.setOpacity = function( alpha ) {
   this.cells.forEach( function( cell ) {
+    alpha = Math.round(alpha * 1000) / 1000;
     cell.element.style.opacity = alpha;
+    if (alpha === 0) {
+      cell.element.classList.remove('carousel-cell--visible');
+
+    } else {
+      cell.element.classList.add('carousel-cell--visible');
+    }
   });
 };
 
